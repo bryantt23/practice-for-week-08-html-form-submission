@@ -122,7 +122,15 @@ const server = http.createServer((req, res) => {
       const newCat = new Cat(req.body);
       console.log(`new cat ${JSON.stringify(newCat)}`);
 
-      res.writeHead(302, { Location: '/' });
+      res.writeHead(301, { Location: '/' });
+      res.end();
+      return;
+    }
+
+    if (req.method === 'POST' && req.url === '/dog') {
+      const newDog = new Dog(req.body);
+      console.log(`newDog ${JSON.stringify(newDog)}`);
+      res.writeHead(301, { Location: '/' });
       res.end();
       return;
     }
